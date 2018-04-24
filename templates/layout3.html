@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+	        function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/fasthover.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/font-awesome.css') }}">
+
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.min.js') }}"></script>
+        <link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/bootstrap-3.1.1.min.js') }}"></script>
+
+
+
+
+        <script type="text/javascript">
+
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                });
+                $("[data-target=#myModal9]").on("click", function(){
+                    $(".product_description").empty();
+                    $(".product_link").empty();
+
+
+                    var description = $(this).data("title");
+                    var newDescription = "";
+                    $.each(description.split("\n"), function(_, line){
+                        newDescription = newDescription + "<br/>" + line;
+                    });
+                    $(".product_description").html(newDescription);
+
+                    $(".product_link").html($(this).data("link"));
+
+                    var p=$(this).data("pic");
+                    $(".product_pic").prepend('<img src="'+ p +'" />');
+
+                    var lin=$(this).data("link")
+
+                    $("#btnSubmit").button().click(function(){
+                    //alert("button");
+                    location.replace(lin);
+                });
+                });
+            });
+
+
+
+
+        </script>
+    </head>
+    <body>
+        {%  include 'includes/_header.html' %}
+        {%  include 'includes/_navbar.html' %}
+
+         <div class="container">
+            {% block body %}{% endblock %}
+         </div>
+
+
+
+    </body>
+</html>

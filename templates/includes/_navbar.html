@@ -1,0 +1,145 @@
+<script>
+	 function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+      testAPI();
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+
+        var loc = window.location.href;
+        var url = "http://localhost:5000/";
+
+       if (loc != url && loc != url + "about" && loc != url + "contact")
+              window.location="http://localhost:5000/";
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '337744223404713',
+      xfbml      : true,
+      version    : 'v2.12'
+    });
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+
+    document.getElementById('logoutBtn').style.display = 'block';
+    document.getElementById('loginBtn').style.display = 'none';
+    document.getElementById('ddlProducts').style.display = 'block';
+
+  }
+
+  function LogOutStats()
+  {
+  	FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                FB.logout(function(response) {
+                    document.getElementById('logoutBtn').style.display = 'none';
+    document.getElementById('loginBtn').style.display = 'block';
+    document.getElementById('ddlProducts').style.display = 'none';
+    checkLoginState();
+                });
+            }
+        });
+  }
+</script>
+
+<div class="navigation">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header nav_2">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav">
+						<li><a href="/" aria-label="Home" class="act">Home</a></li>
+						<!-- Mega Menu -->
+						<li class="dropdown" id="ddlProducts" style="display: none">
+							<a href="#"  aria-label="Products" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+							<ul class="dropdown-menu multi-column columns-3">
+								<div class="row">
+									<div class="col-sm-3">
+										<ul class="multi-column-dropdown">
+											<h6>Mobiles</h6>
+											<li><a href="/phones" aria-label="Mobile Phones">Mobile Phones</a></li>
+											<li><a href="/products">Mp3 Players <span>New</span></a></li>
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<ul class="multi-column-dropdown">
+											<h6>ALL</h6>
+											<li><a href="/products" aria-label="All products">Products</a></li>
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<ul class="multi-column-dropdown" aria-label="Accessories">
+											<h6>Accessories</h6>
+											<li><a href="/laptop" aria-label="laptop Accessories" >Laptop</a></li>
+											<li><a href="#" aria-label="Desktop Accessories">Desktop</a></li>
+										</ul>
+									</div>
+									<div class="col-sm-2">
+										<ul class="multi-column-dropdown" aria-label="Home">
+											<h6>Home</h6>
+											<li><a href="#" aria-label="Tv">Tv</a></li>
+											<li><a href="#" aria-label="Camera">Camera</a></li>
+										</ul>
+									</div>
+
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+						</li>
+						<li><a href="/about" aria-label="About Us">About Us</a></li>
+
+						<li><a href="/contact" aria-label="Contact Us">Contact Us</a></li>
+						<li class="btnLogin" aria-label="Log out">
+							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="loginBtn">
+							</fb:login-button>
+							<button style="display: none" id="logoutBtn" onclick="LogOutStats()" class="fa fa-facebook logoutBtn" aria-label="Log out">Log out</button>
+
+							<div id="status">
+</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+</div>
+

@@ -1,0 +1,114 @@
+{% extends  'layout.html' %}
+{% block body%}
+
+<div class="mobiles">
+		<div class="container">
+			<div class="w3ls_mobiles_grids">
+				<div class="col-md-4 w3ls_mobiles_grid_left">
+					<div class="w3ls_mobiles_grid_left_grid">
+						<h3>Categories</h3>
+						<div class="w3ls_mobiles_grid_left_grid_sub">
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+								<div class="panel-heading" role="tab" id="headingTwo">
+								  <h4 class="panel-title asd">
+									Products
+								  </h4>
+									<div class="panel-body panel_text">
+									<ul>
+										<li><a href="/phones">Mobiles</a></li>
+										<li><a href="/laptop">Laptop</a></li>
+										<li><a href="/products">ALL Products</a></li>
+										<li><a href="/sime">Simelarity</a></li>
+									</ul>
+								  </div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+				<div class="col-md-8 w3ls_mobiles_grid_right">
+
+
+
+
+
+{%for i in pho:%}
+<div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+	<div class="agile_ecommerce_tab_left mobiles_grid">
+		<div class="hs-wrapper2">
+			<img src="{{i[3]}}" alt=" " class="img-responsive" />
+			<div class="w3_hs_bottom w3_hs_bottom_sub1">
+				<ul>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal9" data-pic="{{i[3]}}" data-link="{{i[2]}}" data-title="{{i[1]}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="simpleCart_shelfItem">
+			<form action="#" method="post">
+				<input type="hidden" name="cmd" value="_cart" />
+				<input type="hidden" name="add" value="1" />
+			</form>
+		</div>
+	</div>
+</div>
+
+{%endfor%}
+						<div class="clearfix"> </div>
+					</div>
+
+
+				</div>
+				<div class="clearfix"> </div>
+
+
+			</div>
+		</div>
+
+
+
+<div class="form-group col-md-12">
+	<div class="modal video-modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModal9">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<section>
+					<div class="modal-body">
+
+						<div class="col-md-12 modal_body_right">
+							<div class="rating col-md-5 pull-left" >
+								<div class="rating-left">
+									 									<input id = "btnSubmit" type="submit" value="اذهب الى موقع الصورة"/>
+
+								</div>
+							</div>
+								<div class="col-md-7">
+						   <p class="product_description pull-right" dir="rtl"></p>
+
+								</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{#
+{% for j in pho%}
+	{%for p in j[1].splitlines()%}
+		<p>{{p}}</p>
+	{%endfor%}
+<p>##################################################################################</p>
+{%endfor%}
+#}
+{% endblock %}

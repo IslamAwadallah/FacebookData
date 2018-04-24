@@ -1,0 +1,28 @@
+{% extends  'layout3.html' %}
+
+{% block body %}
+<div class="team">
+		<div class="container">
+			<h3>Meet Our Team</h3>
+			<div class="wthree_team_grids">
+
+				<div class="col-md-3 wthree_team_grid">
+
+					<img src="{{ url_for('static', filename = 'images/islam.jpg')}}" alt=" " class="img-responsive" />
+					<h4>Islam Amer</h4>
+					<div class="agileits_social_button">
+						<ul>
+							<li><a  aria-label="Facebook" href="https://www.facebook.com/sloom84" class="facebook"> </a></li>
+							<li><a  aria-label="twitter" href="https://twitter.com/IslamJomaa84" class="twitter"> </a></li>
+							<li><a  aria-label="google plus" href="https://myaccount.google.com/?utm_source=OGB&utm_medium=act" class="google"> </a></li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="clearfix"> </div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
