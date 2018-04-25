@@ -36,6 +36,7 @@
                     $(".product_description").html(newDescription);
 
                     $(".product_link").html($(this).data("link"));
+                    $(".product_id").html($(this).data("id"));
 
                     var p=$(this).data("pic");
                     $(".product_pic").prepend('<img src="'+ p +'" />');

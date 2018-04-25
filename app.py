@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import flask
 from flask_wtf import Form
-from flask import Flask,render_template,flash,redirect,url_for,session,request ,logging
+from flask import Flask,render_template,flash,redirect,url_for,session,request ,logging,Markup
 from wtforms import StringField,TextAreaField,validators,TextField,SubmitField
 import MySQLdb
 import schedule
@@ -60,10 +60,8 @@ def search():
 
         # print("THE USSSSSSSSSSSSSER ======>",user)
 
-
     try:
         cur.execute(""" SELECT * FROM Posts where post_msg like '% """ + user + """ %' """ )
-
         pos = cur.fetchall()
         print(cur)
         print(pos)
@@ -87,7 +85,9 @@ def contact():
     form = ContactForm()
 
     if request.method == 'POST':
-        return 'Form posted'
+        message = Markup("<h1>Done! We will contact  soon</h1>")
+        flash(message)
+        return render_template('contact.html',form=form,success=True)
 
     elif request.method == 'GET':
         return render_template('contact.html', form=form)
@@ -146,6 +146,7 @@ def sime():
 if __name__=='__main__':
     app.secret_key = 'secret123'
     app.run(debug=True)
+    
     # app.secret_key = 'secret123'
     # app.run(debug=True)
 
